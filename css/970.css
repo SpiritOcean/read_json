@@ -1,0 +1,34 @@
+/*-------------- standart --------------*/
+/* light Gray */
+/*-------------- calculate front size --------------*/
+/*-------------- element --------------*/
+label {
+  font-weight: normal;
+}
+
+.img-responsive {
+  margin: 0 auto;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;    
+    text-align:left;    
+    margin-right:-4px;
+}
+
+/*-------------- view point >=1000 --------------*/
+@media (min-device-width: 1000px) {
+  .warpper {
+    width: 970px;
+    margin: 0 auto;
+  }
+}
+
+/*-------------- view point <1000 --------------*/
+@media only screen and (min-device-width: 320px) and (max-device-width: 999px) {
+  .warpper {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
