@@ -10,9 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- warpper -->
-    <link href="css/970.css" rel="stylesheet">
-    <!-- backtotop -->
-    <link href="css/back-to-top.css" rel="stylesheet">
+    <link href="css/970.css" rel="stylesheet">    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,10 +48,10 @@
                         </div>
                     </div><!-- app/Music ng-repeat/musicList -->
 
-                </div>                
-            </div>
+                </div><!-- /warpper -->
+            </div><!-- all play list -->
             <div style="margin-top:30px; padding-top:10px; padding-bottom:10px; border-top:4px dotted gray;" >
-            </div>
+            </div><!-- awesome dotted -->
             <div class="row">
                 <div class="warpper" style="text-align:center;">
                     <div class="col-md-12" ng-repeat="x in playMusicList" style="padding-top:5px; padding-bottom:5px; border-bottom:1px solid gray;">
@@ -70,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- app/Music ng-repeat/playMusicList -->
+            </div><!-- app/Music ng-repeat/playMusicList /music in play list -->
             
         </div><!-- app/Music control/musicList -->
     </div><!-- /.container-fluid -->
@@ -88,35 +86,35 @@
 
 
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-1.12.0.min.js"></script>    
+    
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <!-- angular -->
     <script src="js/angular.js"></script>
-    <!-- main -->
+    <!-- Music list control -->
     <script>
       var app = angular.module('Music', []);
 
       app.controller('ngMusicList', function($scope, $http) {
 
 
+        /*$http.get("https://github.com/anop72/playground/blob/master/v1/playlist.json").then(function(response) {
+            $scope.musicList = response.data.records;
+        });*/ // ตรงนี้เอาไว้โหลด ไฟล์จาก http ข้างนอก ลองใช้เรียก ดูแล้ว ทำไม่ได้ น่าจะขึ้นอยู่กับ สิทธิ์ ที่โฮส กำหนด เลย ก็อป json มาใช้ใน local เอา
+
         $http.get("js/playlist.json").success(function(data) {
             $scope.musicList = data;
-        });
+        });// load play list
 
         $scope.selectedMusic = function() {            
-            $scope.playMusicList = null;        
+            $scope.playMusicList = null;// clear music list
 
-            $http.get("js/2.json").success(function(data) {
+            $http.get("js/2.json").success(function(data) {// ตรงนี้ควรเป็น index ที่แตกต่างกัน ซึ่งต้องมี ใน playlist ที่อ่านได้ครั้งแรก
                 $scope.playMusicList = data;
-            });
+            });// load music list
         }
         
-        /*$http.get(" http://www.w3schools.com/angular/customers.php").then(function(response) {
-            $scope.musicList = response.data.records;
-        });*/                
+                        
       });
     </script>
   </body>
