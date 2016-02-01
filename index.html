@@ -32,8 +32,8 @@
         <div ng-app="Music" ng-controller="ngMusicList">
             <div class="row">
                 <div class="warpper" style="text-align:center;">
-                    <div class="col-md-3 col-centered" ng-repeat="x in musicList">
-                        <div style="cursor:pointer;" ng-click="selectedMusic()">
+                    <div class="col-md-3" ng-repeat="x in musicList">
+                        <div style="cursor:pointer;" ng-click="selectedMusic($index)">
                             <div class="col-md-12" >
                                 <img class="img-responsive" src="{{x.coverImage}}">
                             </div>
@@ -60,12 +60,12 @@
                                 {{x.title}}
                             </label>
                         </div>
-                        <div class="col-md-6">
+                        <!--<div class="col-md-6">
                             <audio controls>
                               <source src="{{x.filePath}}" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div><!-- app/Music ng-repeat/playMusicList /music in play list -->
@@ -103,14 +103,24 @@
 
         $http.get("js/playlist.json").success(function(data) {
             $scope.musicList = data;
-        });// load play list
 
-        $scope.selectedMusic = function() {            
+            /*console.log ("----------------------");
+            angular.forEach($scope.musicList,function(data,index){
+                //alert(data.name);
+                console.log ("Name = " + $scope.musicList[index].name);             
+            });
+            console.log ("----------------------");  */                              
+            
+        });// load play list
+        
+        $scope.selectedMusic = function(index) {            
             $scope.playMusicList = null;// clear music list
 
-            $http.get("js/2.json").success(function(data) {// ตรงนี้ควรเป็น index ที่แตกต่างกัน ซึ่งต้องมี ใน playlist ที่อ่านได้ครั้งแรก
+            $http.get("js/"+ $scope.musicList[index].id +".json").success(function(data) {
                 $scope.playMusicList = data;
             });// load music list
+
+            //console.log ("XXX = " + $scope.musicList[index].id);
         }
         
                         
